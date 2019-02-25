@@ -1,0 +1,14 @@
+Package: conceptx
+Title: Support authoring of NonCoding (Conceptual) Exercises
+Version: 0.1
+Authors@R: 
+    person(given = "Ramnath",
+           family = "Vaidyanathan",
+           role = c("aut", "cre"),
+           email = "ramnath@datacamp.com")
+Description: Support authoring of NonCoding (Conceptual) Exercises
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/datacamp/conceptx
+BugReports: https://github.com/datacamp/conceptx/issues
