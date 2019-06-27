@@ -3,6 +3,7 @@
 export(copy_explorables)
 export(display_explorable)
 export(non_coding)
+export(non_coding_ui)
 export(write_envvar)
 export(write_fun)
 export(zip_explorables)

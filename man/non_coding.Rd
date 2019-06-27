@@ -2,9 +2,12 @@
 % Please edit documentation in R/noncoding.R
 \name{non_coding}
 \alias{non_coding}
+\alias{non_coding_ui}
 \title{Shiny module to create a non-coding exercise}
 \usage{
 non_coding(input, output, session, feedback)
+
+non_coding_ui(id)
 }
 \arguments{
 \item{input}{standard \code{shiny} boilerplate}
@@ -15,6 +18,8 @@ non_coding(input, output, session, feedback)
 
 \item{feedback}{a reactive that returns a named list with a
 message and feedback}
+
+\item{id}{id to call the module with}
 }
 \description{
 Shiny module to create a non-coding exercise
