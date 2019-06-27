@@ -76,7 +76,9 @@ non_coding_ui <- function(id){
         if (is_not_campus()) "true" else "false"
       )
     ),
-    shiny::tags$script(shiny::HTML(js_funs_noncoding()))
+    shiny::tags$script(shiny::HTML(
+      js_funs_noncoding(id = ns('submit'))
+    ))
   )
 }
 
@@ -94,8 +96,8 @@ display_feedback <- function(p){
 }
 
 
-js_funs_noncoding <- function(){
-  "
+js_funs_noncoding <- function(id){
+  sprintf("
   setupCampusHandlers();
 
   function isCampus(){
@@ -113,7 +115,7 @@ js_funs_noncoding <- function(){
             if (data.action === 'SUBMIT_ANSWER'){
               console.log('Submitting Answer ...');
               // trigger a submit event that the shiny server can listen to
-              Shiny.setInputValue('submit', 1, {priority: 'event'});
+              Shiny.setInputValue('%s', 1, {priority: 'event'});
             }
           }
         });
@@ -144,5 +146,5 @@ js_funs_noncoding <- function(){
       window.parent.postMessage(EXERCISE_COMPLETED, '*');
     }
   }
-  "
+  ", id)
 }
