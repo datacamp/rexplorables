@@ -52,7 +52,10 @@ non_coding <- function(input, output, session, feedback){
   })
 }
 
-non_coding_ui <- function(id, ...){
+#' @rdname non_coding
+#' @param id id to call the module with
+#' @export
+non_coding_ui <- function(id){
   check_shiny_installed()
   ns <- shiny::NS(id)
   ui <- if (is_not_campus()){
