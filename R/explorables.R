@@ -83,10 +83,15 @@ zip_explorables <- function(path = 'explorables'){
 copy_explorables <- function(url){
   to <- get_www_dir()
   zip_file_dest <- file.path(to, basename(url))
-  utils::download.file(url, dest = zip_file_dest)
+  if (grepl('^http', url)){
+    utils::download.file(url, dest = zip_file_dest)
+  } else {
+    file.copy(url, to = zip_file_dest, overwrite = TRUE)
+  }
   on.exit({
     unlink(file.path(to, '__MACOSX'), recursive = TRUE)
     unlink(zip_file_dest)
   })
   utils::unzip(zip_file_dest, exdir = to)
+  return(to)
 }
