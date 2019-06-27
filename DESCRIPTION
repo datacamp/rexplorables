@@ -14,8 +14,7 @@ LazyData: true
 URL: https://github.com/datacamp/conceptx
 BugReports: https://github.com/datacamp/conceptx/issues
 RoxygenNote: 6.1.1
-Imports: 
-    magrittr,
+Imports:
     utils,
     shiny
 Suggests: 
