@@ -4,7 +4,10 @@
 \alias{get_www_dir}
 \title{Get path to www directory}
 \usage{
-get_www_dir()
+get_www_dir(local_www_dir = tempdir())
+}
+\arguments{
+\item{local_www_dir}{local www directory}
 }
 \description{
 Get path to www directory
