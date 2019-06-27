@@ -8,7 +8,7 @@ is_datacamp <- function() {
 get_www_dir <- function(local_www_dir = tempdir()){
   if (is_datacamp()) {
     www_dir <- Sys.getenv("SERVER_PUBLIC_DIRECTORY", NA)
-
+    shiny_folder <- "/srv/shiny-server"
     # TODO: next block makes RBackend backward compatible for r-shiny-prod <= v1.1.1 and r-file-server-prod <= v1.1.2
     if (is.na(www_dir)) {
       if (dir.exists(shiny_folder)) {
