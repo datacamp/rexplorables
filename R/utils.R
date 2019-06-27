@@ -53,6 +53,9 @@ write_fun <- function(fun, file = '/etc/R/Rprofile.site'){
   cat(paste(c(fun_chr, "\n"), collapse = "\n"), file = file, append = TRUE)
 }
 
-
-
-
+check_shiny_installed <- function(){
+  if (!requireNamespace("shiny", quietly = TRUE)) {
+    stop("Package \"shiny\" needed for this function to work. Please install it.",
+      call. = FALSE)
+  }
+}

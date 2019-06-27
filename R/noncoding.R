@@ -38,6 +38,7 @@
 #'  shinyApp(ui = ui, server = server)
 #'}
 non_coding <- function(input, output, session, feedback){
+  check_shiny_installed()
   shiny::observeEvent(input$submit, {
     print(feedback())
     session$sendCustomMessage("campus", feedback())
@@ -52,6 +53,7 @@ non_coding <- function(input, output, session, feedback){
 }
 
 non_coding_ui <- function(id, ...){
+  check_shiny_installed()
   ns <- shiny::NS(id)
   ui <- if (is_not_campus()){
     shiny::tagList(
