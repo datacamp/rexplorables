@@ -11,8 +11,8 @@ Description: This package contains utility functions to support authoring
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/datacamp/conceptx
-BugReports: https://github.com/datacamp/conceptx/issues
+URL: https://github.com/datacamp/rexplorable
+BugReports: https://github.com/datacamp/rexplorable/issues
 RoxygenNote: 6.1.1
 Imports:
     utils
