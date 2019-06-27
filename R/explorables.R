@@ -6,6 +6,7 @@
 #' @param cdn A boolean indicating if asset should be served from CDN.
 #' @param type A string indicating whether to use dev, staging, or prod.
 #' @param version A string indicating the version of the asset.
+#' @param index Name of the html file (defaults to index.html)
 #' @export
 display_explorable <- function(path,
                                subdir = Sys.getenv('DC_EXPLORABLES_SUBDIR', ""),
@@ -67,6 +68,7 @@ display_explorable <- function(path,
 #'
 #' @param path path to explorables
 #' @export
+#' @importFrom utils capture.output download.file unzip
 zip_explorables <- function(path = 'explorables'){
   zipfile <- basename(path)
   files <- list.files(path, recursive = TRUE, full.names = TRUE)
@@ -80,11 +82,11 @@ zip_explorables <- function(path = 'explorables'){
 #' @export
 copy_explorables <- function(url){
   to <- get_www_dir()
-  zip_file_dest <- file.path(to, basename(from))
-  download.file(url, dest = zip_file_dest)
+  zip_file_dest <- file.path(to, basename(url))
+  utils::download.file(url, dest = zip_file_dest)
   on.exit({
     unlink(file.path(to, '__MACOSX'), recursive = TRUE)
     unlink(zip_file_dest)
   })
-  unzip(zip_file_dest, exdir = to)
+  utils::unzip(zip_file_dest, exdir = to)
 }

@@ -4,44 +4,48 @@
 #' @param input standard \code{shiny} boilerplate
 #' @param output standard \code{shiny} boilerplate
 #' @param session standard \code{shiny} boilerplate
-#' @param feedback
+#' @param feedback a reactive that returns a named list with a
+#'   message and feedback
 #' @examples
-#' library(shiny)
-#' num <- sample(1:10, 1)
+#' \dontrun{
+#'  library(shiny)
+#'  num <- sample(1:10, 1)
 #'
-#' check_exercise <- function(actual, guess){
-#'   if(actual == guess){
-#'     list(message = "Well Done!", success = TRUE)
-#'   } else {
-#'     msg <- sprintf("You guessed %s. Please try again!", guess)
-#'     list(message = msg, success = FALSE)
-#'   }
-#' }
+#'  check_exercise <- function(actual, guess){
+#'    if(actual == guess){
+#'      list(message = "Well Done!", success = TRUE)
+#'    } else {
+#'      msg <- sprintf("You guessed %s. Please try again!", guess)
+#'      list(message = msg, success = FALSE)
+#'    }
+#'  }
 #'
-#' ui <- fluidPage(
-#'   theme = shinythemes::shinytheme('cosmo'),
-#'   titlePanel('Guess the Number'),
-#'   mainPanel(
-#'     sliderInput('num', 'Select number', 0, 10, 2),
-#'     non_coding_ui('feedback')
-#'   )
-#' )
+#'  ui <- fluidPage(
+#'    theme = shinythemes::shinytheme('cosmo'),
+#'    titlePanel('Guess the Number'),
+#'    mainPanel(
+#'      sliderInput('num', 'Select number', 0, 10, 2),
+#'      non_coding_ui('feedback')
+#'    )
+#'  )
 #'
-#' server <- function(input, output, session){
-#'   feedback <- reactive({
-#'     check_exercise(num, input$num)
-#'   })
-#'   shiny::callModule(non_coding, 'feedback', feedback)
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
+#'  server <- function(input, output, session){
+#'    feedback <- reactive({
+#'      check_exercise(num, input$num)
+#'    })
+#'    shiny::callModule(non_coding, 'feedback', feedback)
+#'  }
+#'  shinyApp(ui = ui, server = server)
+#'}
 non_coding <- function(input, output, session, feedback){
   shiny::observeEvent(input$submit, {
     print(feedback())
     session$sendCustomMessage("campus", feedback())
     if (is_not_campus()){
       output$feedback <- shiny::renderUI({
-        display_feedback(isolate(feedback()))
+        display_feedback(
+          shiny::isolate(feedback())
+        )
       })
     }
   })
@@ -63,7 +67,8 @@ non_coding_ui <- function(id, ...){
     shiny::tags$script(
       sprintf(
         "window.LOCAL = %s",
-        jsonlite::toJSON(is_not_campus(), auto_unbox = TRUE)
+        # jsonlite::toJSON(is_not_campus(), auto_unbox = TRUE)
+        if (is_not_campus()) "true" else "false"
       )
     ),
     shiny::tags$script(shiny::HTML(js_funs_noncoding()))
@@ -77,9 +82,9 @@ is_not_campus <- function(){
 
 display_feedback <- function(p){
   if (p$success){
-    div(class = 'alert alert-success', p$message)
+    shiny::div(class = 'alert alert-success', p$message)
   } else {
-    div(class = 'alert alert-warning', p$message)
+    shiny::div(class = 'alert alert-warning', p$message)
   }
 }
 

@@ -4,9 +4,10 @@ get_www_dir <- function(){
   www_dir <- Sys.getenv("SERVER_PUBLIC_DIRECTORY", NA)
   # Next block makes RBackend backward compatible for
   # r-shiny-prod <= v1.1.1 and r-file-server-prod <= v1.1.2
+  shiny_folder <- "/srv/shiny-server"
   if (is.na(www_dir)) {
     www_dir <- if (dir.exists(shiny_folder)) {
-      "/srv/shiny-server"
+      shiny_folder
     } else {
       "/var/www"
     }
@@ -47,7 +48,7 @@ write_envvar <- function(..., file = '/etc/R/Renviron'){
 #' }
 write_fun <- function(fun, file = '/etc/R/Rprofile.site'){
   y <- deparse(substitute(fun));
-  fun_chr <- capture.output(match.fun(y))
+  fun_chr <- utils::capture.output(match.fun(y))
   fun_chr[1] <- sprintf("\n%s <- %s", y, fun_chr[1])
   cat(paste(c(fun_chr, "\n"), collapse = "\n"), file = file, append = TRUE)
 }
