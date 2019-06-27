@@ -8,7 +8,7 @@ Authors@R:
            email = "ramnath@datacamp.com")
 Description: This package contains utility functions to support authoring 
   of Explorable and NonCoding Exercises.
-License: MIT + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/datacamp/rexplorable
