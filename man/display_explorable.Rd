@@ -6,7 +6,8 @@
 \usage{
 display_explorable(path, subdir = Sys.getenv("DC_EXPLORABLES_SUBDIR",
   ""), cdn = Sys.getenv("DC_EXPLORABLES_CDN", FALSE),
-  type = Sys.getenv("DC_EXPLORABLES_TYPE", "dev"), version = "latest")
+  type = Sys.getenv("DC_EXPLORABLES_TYPE", "dev"), version = "latest",
+  index = "index.html")
 }
 \arguments{
 \item{path}{Path to the folder containing index.html.}
@@ -18,7 +19,9 @@ display_explorable(path, subdir = Sys.getenv("DC_EXPLORABLES_SUBDIR",
 \item{type}{A string indicating whether to use dev, staging, or prod.}
 
 \item{version}{A string indicating the version of the asset.}
+
+\item{index}{Name of the html file (defaults to index.html)}
 }
 \description{
-Display Explorable in the HTML Viewer
+This function can be used to display an explorable web app in a
 }
