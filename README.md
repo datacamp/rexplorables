@@ -3,7 +3,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `rexplorables` is to provide a set of utility functions to author and use `Explorable` and `NonCoding` exercises.s
+The goal of `rexplorables` is to provide a set of utility functions to author and use `Explorable` and `NonCoding` exercises.
 
 ## Installation
 
