@@ -122,7 +122,7 @@ The final step is to use it in your exercise.
 
 ```r
 url <- "https://assets.datacamp.com/production/repositories/4738/datasets/831b9f9bded1a54617af3d67e2d4c01324e79396/hello_world.zip"
-rexplorables::copy_explorable(url)
+rexplorables::copy_explorables(url)
 displayPage('hello_world/')
 ```
 
