@@ -17,7 +17,7 @@ generate_data <- function(baseline, power = 80, signif_level = 5){
     mutate(effect = (p2 / p1 - 1))
 }
 
-check_exercise <- function(actual, guess){
+check_submission <- function(actual, guess){
   resp <- function(msg, success){
     message <- if (success){
       paste(msg, 'The sample size required is ', actual)
@@ -94,7 +94,7 @@ server <- function(input, output, session){
       )
   })
   feedback <- reactive({
-    check_exercise(4000, input$sample_size)
+    check_submission(4000, input$sample_size)
   })
   callModule(non_coding, 'feedback', feedback)
 }

@@ -47,7 +47,7 @@ generate_data = function(difficulty, numPoints){
 
 }
 
-check_exercise <- function(data, guess){
+check_submission <- function(data, guess){
   actual <- cor(data$X, data$Y)
   resp <- function(msg, success){
     message <- if (success){
@@ -108,7 +108,7 @@ server <- function(input, output, session){
       geom_point()
   })
   feedback <- reactive({
-    check_exercise(data, input$guess)
+    check_submission(data, input$guess)
   })
   shiny::callModule(non_coding, 'feedback', feedback)
 }
