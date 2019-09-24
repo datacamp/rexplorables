@@ -3,7 +3,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `rexplorables` is to provide a set of utility functions to author and use `Explorable` and `NonCoding` exercises.
+The goal of `rexplorables` is to provide a set of utility functions to author and use `Explorable with Multiple Choice` and `Explorable` exercises.
 
 ## Installation
 
@@ -15,11 +15,11 @@ remotes::install_github("rexplorables")
 
 ## Authoring
 
-### NonCodingExercise
+### ExplorableExercise
 
-__NonCoding__ exercises are one of the newest types of exercises in our courses. In this type of exercise, learners interact with a web app and complete a given task. For example, this exercise type can be used to ask learners to view a scatterplot, and use a slider to guess the correlation coefficient. This exercise type can support arbitrary types of user interactions, and hence is extremely flexible.
+__Explorable__ exercises are one of the newest types of exercises in our courses. In this type of exercise, learners interact with a web app and complete a given task. For example, this exercise type can be used to ask learners to view a scatterplot, and use a slider to guess the correlation coefficient. This exercise type can support arbitrary types of user interactions, and hence is extremely flexible.
 
-Let us go through the steps required to author a shiny-app that can be used in a NonCodingExercise. For the sake of simplicity, we will build a shiny-app that requires users to respond to a question by typing their answer into a text box.
+Let us go through the steps required to author a shiny-app that can be used in a ExplorableExercise. For the sake of simplicity, we will build a shiny-app that requires users to respond to a question by typing their answer into a text box.
 
 #### Step 1: Write Shiny App
 
