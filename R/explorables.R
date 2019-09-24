@@ -69,10 +69,10 @@ display_explorable <- function(path,
 #' @param path path to explorables
 #' @export
 #' @importFrom utils capture.output download.file unzip
-zip_explorables <- function(path = 'explorables'){
+zip_explorables <- function(path = 'explorables', ...){
   zipfile <- basename(path)
   files <- list.files(path, recursive = TRUE, full.names = TRUE)
-  utils::zip(zipfile, files = files)
+  utils::zip(zipfile, files = files, ...)
 }
 
 
