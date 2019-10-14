@@ -1,4 +1,5 @@
 ### _Market Basket Analysis in R: Case Study in using explorable exercise with MCQ_
+##### Author: Adel Nehme
 
 ##### Context:
 
@@ -68,5 +69,5 @@ rexplorables::copy_explorables(url)
 ```
 
 
-
+If you have any questions on how to get this done, feel free to slack me or email me! 
 
