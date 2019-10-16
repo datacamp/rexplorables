@@ -127,3 +127,7 @@ displayPage('hello_world/')
 ```
 
 Note that this step would download the exercise to the docker container and serve the shiny app. It avoids a build step and hence is great during development, but as it involves a download step, can be slow for production. Hence, in production, it is recommended that you directly download the explorables into the course container by copying the first two lines of code to `requirements.R`.
+
+A detailed case study on how to create and deploy an explorable exercise is
+available [here](https://github.com/datacamp/rexplorables/blob/master/inst/case_studies/Market%20Basket%20Analysis%20in%20R.md)
+
