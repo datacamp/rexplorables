@@ -15,7 +15,8 @@ URL: https://github.com/datacamp/rexplorable
 BugReports: https://github.com/datacamp/rexplorable/issues
 RoxygenNote: 6.1.1
 Imports:
-    utils
+    utils,
+    usethis
 Suggests: 
     RBackend,
     shiny,

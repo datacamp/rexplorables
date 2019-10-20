@@ -4,7 +4,7 @@
 \alias{zip_explorables}
 \title{Zip a folder containing explorables}
 \usage{
-zip_explorables(path = "explorables")
+zip_explorables(path = "explorables", ...)
 }
 \arguments{
 \item{path}{path to explorables}
