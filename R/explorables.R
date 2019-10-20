@@ -26,7 +26,7 @@ create_explorable <- function(path_dir){
   usethis::ui_info('Zipping explorable...')
   zip_explorables(path, extras = '-qq -x "*.Rmd"')
   usethis::ui_done(
-    glue::glue('Your explorable has been created at {paste0(basename(path), ".zip")}')
+    glue::glue('Your explorable has been saved as {paste0(basename(path), ".zip")}')
   )
   usethis::ui_todo("Upload it as an asset in the teach editor")
   usethis::ui_todo("Add this snippet to the pre-exercise-code")
