@@ -3,6 +3,7 @@
 #' @param path_dir Path to the directory containing the explorable. The Rmd is
 #' expected to be named index.Rmd.
 #' @importFrom usethis ui_info ui_code_block ui_todo ui_done
+#' @export
 create_explorable <- function(path_dir){
   withr::with_dir(path_dir, {
     if (file.exists('index.Rmd')){
