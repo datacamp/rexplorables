@@ -16,7 +16,8 @@ BugReports: https://github.com/datacamp/rexplorable/issues
 RoxygenNote: 6.1.1
 Imports:
     utils,
-    usethis
+    usethis,
+    magrittr
 Suggests: 
     RBackend,
     shiny,
