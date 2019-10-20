@@ -13,29 +13,32 @@ create_explorable <- function(path_dir){
       usethis::ui_info("Updating html to custom datacamp theme...")
       index <- paste(readLines("index.html", warn = FALSE), collapse = "\n")
       index %>%
-        stringr::str_replace(
-          stringr::fixed("index_files/bootstrap-3.3.5/css/cosmo.min.css"),
-          "https://explorables.datacamp.com/latest/themes/bootstrap.min.css"
+        gsub(
+          "index_files/bootstrap-3.3.5/css/cosmo.min.css",
+          "https://explorables.datacamp.com/latest/themes/bootstrap.min.css",
+          .,
+          fixed = TRUE
         ) %>%
-        stringr::str_replace(
-          stringr::fixed("index_files/plotly-main-1.46.1/plotly-latest.min.js"),
-          "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.46.1/plotly-basic.min.js"
+        gsub(
+          "index_files/plotly-main-1.46.1/plotly-latest.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.46.1/plotly-basic.min.js",
+          .,
+          fixed = TRUE
         ) %>%
         cat(file = "index.html")
     }
   })
   usethis::ui_info('Zipping explorable...')
-  zip_explorables(path, extras = '-qq -x "*.Rmd"')
+  zip_explorables(path_dir, extras = '-qq -x "*.Rmd"')
   usethis::ui_done(
-    glue::glue('Your explorable has been saved as {paste0(basename(path), ".zip")}')
+    glue::glue('Your explorable has been saved as {paste0(basename(path_dir), ".zip")}')
   )
   usethis::ui_todo("Upload it as an asset in the teach editor")
   usethis::ui_todo("Add this snippet to the pre-exercise-code")
   usethis::ui_code_block(c(
-    "# copy-paste link to asset from teach",
-    "url <- '___'",
+    "# Replace ___ with url to zip in teach",
     "rexplorables::copy_explorable(url)",
-    "displayPage('{ basename(path) }/')"
+    "displayPage('{ basename(path_dir) }/')"
   ))
 }
 
