@@ -4,11 +4,24 @@
 #' expected to be named index.Rmd.
 #' @importFrom usethis ui_info ui_code_block ui_todo ui_done
 #' @export
-create_explorable <- function(path_dir){
+create_explorable <- function(path_dir, browse = FALSE){
   withr::with_dir(path_dir, {
     if (file.exists('index.Rmd')){
       usethis::ui_info("Rendering Rmd to html...")
-      rmarkdown::render('index.Rmd', encoding = 'UTF-8', quiet = TRUE)
+      output_type <- extract_output_type('index.Rmd')
+      output_options <- if (!is.na(output_type)){
+        list(css = system.file(
+          'css',
+          sprintf('datacamp-%s.css', output_type),
+          package = 'rexplorables'
+        ))
+      } else {
+        NULL
+      }
+      rmarkdown::render(
+        'index.Rmd', encoding = 'UTF-8', quiet = TRUE,
+        output_options = output_options
+      )
 
       usethis::ui_info("Updating html to custom datacamp theme...")
       index <- paste(readLines("index.html", warn = FALSE), collapse = "\n")
@@ -27,6 +40,9 @@ create_explorable <- function(path_dir){
         ) %>%
         cat(file = "index.html")
     }
+    if (browse){
+      browseURL('index.html')
+    }
   })
   usethis::ui_info('Zipping explorable...')
   zip_explorables(path_dir, extras = '-qq -x "*.Rmd"')
@@ -40,6 +56,15 @@ create_explorable <- function(path_dir){
     "rexplorables::copy_explorable(url)",
     "displayPage('{ basename(path_dir) }/')"
   ))
+}
+
+extract_output_type <- function(f){
+  fm <- rmarkdown::yaml_front_matter(f)
+  if ('output' %in% names(fm)){
+    strsplit(names(fm$output), "::", fixed = TRUE)[[1]][1]
+  } else {
+    NA
+  }
 }
 
 #' Display Explorable in the HTML Viewer
