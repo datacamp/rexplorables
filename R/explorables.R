@@ -9,15 +9,25 @@ create_explorable <- function(path_dir, browse = FALSE){
     if (file.exists('index.Rmd')){
       usethis::ui_info("Rendering Rmd to html...")
       output_type <- extract_output_type('index.Rmd')
-      output_options <- if (!is.na(output_type)){
-        list(css = system.file(
+      css_file <- if (!is.na(output_type)){
+        system.file(
           'css',
           sprintf('datacamp-%s.css', output_type),
           package = 'rexplorables'
-        ))
+        )
       } else {
         NULL
       }
+      if (!dir.exists('css')){
+        dir.create('css')
+      }
+      system.file('css', package = 'rexplorables') %>%
+        dir(full.names = TRUE) %>%
+        purrr::walk(~ {
+          file.copy(.x, file.path('css', basename(.x)), overwrite = TRUE)
+        })
+
+      output_options <- list(css = file.path('css', basename(css_file)))
       rmarkdown::render(
         'index.Rmd', encoding = 'UTF-8', quiet = TRUE,
         output_options = output_options
